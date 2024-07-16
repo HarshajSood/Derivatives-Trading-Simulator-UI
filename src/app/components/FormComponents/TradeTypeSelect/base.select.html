@@ -1,0 +1,7 @@
+<mat-form-field>
+  <mat-select [formControl]="formControl" [required]="true">
+    <mat-option *ngFor="let item of items" [value]="item.id">
+      <span> {{item.text}} </span>
+    </mat-option>
+  </mat-select>
+</mat-form-field>

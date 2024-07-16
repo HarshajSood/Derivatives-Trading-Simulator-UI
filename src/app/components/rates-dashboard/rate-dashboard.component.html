@@ -1,0 +1,45 @@
+<div class="dashboard-row">
+  <mat-tab-group class="rates-group">
+    <mat-tab label="Stocks">
+      <mat-form-field class="ticker-search">
+        <mat-label>Search</mat-label>
+        <input
+          matInput
+          type="text"
+          [placeholder]="'Search'"
+          [formControl]="stockSearch"
+          autocomplete="off"
+        />
+      </mat-form-field>
+      <div class="ticker-board" *ngFor="let tickers of filteredTickers">
+        <rate-ticker [tickerSymbol]="tickers"></rate-ticker>
+      </div>
+    </mat-tab>
+    <mat-tab label="Forex">
+      <mat-form-field class="ticker-search">
+        <mat-label>Search</mat-label>
+        <input
+          matInput
+          type="text"
+          [placeholder]="'Search'"
+          [formControl]="forexSearch"
+          autocomplete="off"
+        />
+      </mat-form-field>
+      <div
+        class="ticker-board"
+        *ngFor="let currencies of filteredCurrencyPairs"
+      >
+        <rate-ticker [currencyPair]="currencies"></rate-ticker>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+
+  <instrument-chart
+    [liveStockRate]="liveStockRate$ | async"
+    [selectedInstrument]="selectedInstrument$ | async"
+  ></instrument-chart>
+</div>
+<div class="dashboard-row">
+  <order-table></order-table>
+</div>

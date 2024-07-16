@@ -1,0 +1,36 @@
+<div
+  class="stock rate-ticker"
+  *ngIf="Stock$ | async as stock"
+  (click)="setSelectedStock(stock)"
+>
+  <div class="ticker-symbol">{{ stock.ticker.symbol }}</div>
+  <div class="ticker-price">
+    <div>{{ stock.price | number : '1.2-2' }}</div>
+    <mat-icon [ngClass]="getClass(stock.change)" class="centered">{{
+      getClass(stock.change)
+    }}</mat-icon>
+
+    <div class="ticker-change" [ngClass]="getClass(stock.change)">
+      {{ stock.change | number : '1.2-2' }}
+    </div>
+  </div>
+  <div class="ticker-volume">Volume: {{ stock.volume }}</div>
+  <div class="ticker-time">{{ stock.quoteTime }}</div>
+</div>
+<div
+  class="forex rate-ticker"
+  *ngIf="Forex$ | async as forex"
+  (click)="setSelectedForex(forex)"
+>
+  <div class="ticker-symbol">{{ getCurrencyString(forex.ticker) }}</div>
+  <div class="ticker-price">
+    <div>{{ forex.price | number : '1.4-4' }}</div>
+    <mat-icon [ngClass]="getClass(forex.change)" class="centered">{{
+      getClass(forex.change)
+    }}</mat-icon>
+    <div class="ticker-change" [ngClass]="getClass(forex.change)">
+      {{ forex.change | number : '1.6-6' }}
+    </div>
+  </div>
+  <div class="ticker-time">{{ forex.quoteTime }}</div>
+</div>

@@ -1,0 +1,87 @@
+<mat-dialog-actions class="close-action">
+  <div>{{ data.ticker }} &#64; {{ data.price | number : '1.2-6' }}</div>
+  <mat-icon mat-flat-button mat-dialog-close>close</mat-icon>
+</mat-dialog-actions>
+<mat-dialog-content>
+  <form
+    class="form-wrapper"
+    *ngIf="basicTradeForm"
+    [formGroup]="basicTradeForm"
+    novalidate
+    autocomplete="off"
+  >
+    <mat-form-field class="select-box">
+      <mat-label>Trade Type</mat-label>
+      <mat-select [formControlName]="'TradeType'" [required]="true">
+        <mat-option *ngFor="let item of tradeItems" [value]="item.id">
+          <span> {{ item.text }} </span>
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-button-toggle-group
+      matInput
+      [hideSingleSelectionIndicator]="true"
+      [formControlName]="'BuySell'"
+    >
+      <mat-button-toggle *ngFor="let item of buySellItems" [value]="item.id">
+        <span> {{ item.text }} </span>
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+    <div class="form-row">
+      <mat-form-field>
+        <mat-label>Quantity</mat-label>
+        <input
+          matInput
+          type="number"
+          [placeholder]="'Amount'"
+          [formControlName]="'Amount'"
+          autocomplete="off"
+          required
+        />
+      </mat-form-field>
+      <mat-icon class="at-icon">alternate_email</mat-icon>
+      <mat-form-field>
+        <mat-label>Price</mat-label>
+        <input
+          matInput
+          type="number"
+          [placeholder]="'Strike'"
+          [formControlName]="'Strike'"
+          autocomplete="off"
+          required
+        />
+      </mat-form-field>
+    </div>
+    <div class="form-row">
+      <mat-form-field *ngIf="showStop" class="last-form-row-field-2">
+        <mat-label>Stop</mat-label>
+        <input
+          matInput
+          type="number"
+          [formControlName]="'Stop'"
+          [placeholder]="'Limit'"
+          autocomplete="off"
+        />
+      </mat-form-field>
+      <mat-form-field *ngIf="showTrailingStop" class="last-form-row-field-1">
+        <mat-label>Trailing Stop</mat-label>
+        <input
+          matInput
+          type="number"
+          [formControlName]="'TrailingStop'"
+          [placeholder]="'Trailing Stop'"
+          autocomplete="off"
+        />
+      </mat-form-field>
+    </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions class="order-action">
+  <button
+    mat-flat-button
+    [disabled]="!isFormValid"
+    (click)="DispatchOrderCreation()"
+  >
+    Place Order
+  </button>
+</mat-dialog-actions>
