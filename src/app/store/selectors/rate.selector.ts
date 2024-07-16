@@ -21,6 +21,7 @@ import {
 import { SelectedInstrument } from '../state/rate.state';
 import { distinctUntilValueChanged } from '../functions.store';
 import { OrderTableListItem } from 'src/app/Models/order-table.models';
+import { CurrencyCode } from 'src/app/Models/assets.models';
 export const $tickerRate = (
   store: Store<AppState>,
   ticker: string
@@ -36,7 +37,7 @@ export const $forexTickerRate = (
   let rate = store.select(
     (s) =>
       s.ratesState.forexTickerQuotes[
-        ticker.baseCurrencyId + ticker.termsCurrencyId
+        CurrencyCode[ticker.baseCurrencyId] + CurrencyCode[ticker.termsCurrencyId]
       ]
   );
   return rate;
@@ -62,8 +63,8 @@ export const $SelectedInstrumentLiveStockRate = (
         ];
       else if (s.ratesState.selectedInstrument.forex)
         return s.ratesState.forexTickerQuotes[
-          s.ratesState.selectedInstrument.forex!.baseCurrencyId +
-            s.ratesState.selectedInstrument.forex!.termsCurrencyId
+          CurrencyCode[s.ratesState.selectedInstrument.forex!.baseCurrencyId] +
+            CurrencyCode[s.ratesState.selectedInstrument.forex!.termsCurrencyId]
         ];
       else return null;
     })

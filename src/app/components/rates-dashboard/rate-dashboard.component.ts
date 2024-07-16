@@ -21,7 +21,7 @@ import { SelectedInstrument } from 'src/app/store/state/rate.state';
   templateUrl: './rate-dashboard.component.html',
 })
 export class RatesDashboardComponent {
-  stockTickers: string[] = ['GOOG', 'NVDA', 'APPL'];
+  stockTickers: string[] = ['GOOG', 'NVDA', 'APPL', 'TSLA', 'AMD', 'META', 'AMZN', 'MSFT', 'NFLX'];
   filteredTickers = this.stockTickers;
   barChartType: ChartType = 'bar';
   stockSearch = new FormControl('');
@@ -29,6 +29,12 @@ export class RatesDashboardComponent {
   currencyPairs: CurrencyPair[] = [
     { baseCurrencyId: CurrencyCode.EUR, termsCurrencyId: CurrencyCode.USD },
     { baseCurrencyId: CurrencyCode.EUR, termsCurrencyId: CurrencyCode.GBP },
+    { baseCurrencyId: CurrencyCode.GBP, termsCurrencyId: CurrencyCode.USD },
+    { baseCurrencyId: CurrencyCode.USD, termsCurrencyId: CurrencyCode.JPY },
+    { baseCurrencyId: CurrencyCode.AUD, termsCurrencyId: CurrencyCode.USD },
+    { baseCurrencyId: CurrencyCode.USD, termsCurrencyId: CurrencyCode.CAD },
+    { baseCurrencyId: CurrencyCode.USD, termsCurrencyId: CurrencyCode.CHF },
+    { baseCurrencyId: CurrencyCode.GBP, termsCurrencyId: CurrencyCode.JPY },
   ];
   filteredCurrencyPairs = this.currencyPairs;
   liveStockRate$: Observable<BaseAssetQuote | null>;

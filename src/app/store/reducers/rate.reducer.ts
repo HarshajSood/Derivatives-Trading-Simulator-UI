@@ -2,6 +2,7 @@ import { RateState, initialRateState } from '../state/rate.state';
 import { Action, createReducer, on } from '@ngrx/store';
 import * as RateActions from 'src/app/store/actions/rate.actions';
 import { newStateWithAction } from '../functions.store';
+import { CurrencyCode } from 'src/app/Models/assets.models';
 
 const rateReducer = createReducer(
   initialRateState,
@@ -25,8 +26,8 @@ const rateReducer = createReducer(
       state,
       (s) =>
         (s.forexTickerQuotes[
-          payload.forexAssetQuote.ticker.baseCurrencyId +
-            payload.forexAssetQuote.ticker.termsCurrencyId
+          CurrencyCode[payload.forexAssetQuote.ticker.baseCurrencyId] +
+          CurrencyCode[payload.forexAssetQuote.ticker.termsCurrencyId]
         ] = payload.forexAssetQuote)
     )
   ),
