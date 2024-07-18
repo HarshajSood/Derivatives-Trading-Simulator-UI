@@ -163,7 +163,7 @@ export class InstrumentChartComponent {
         ticks: {
           display: true,
           color: '#ffffff',
-          maxTicksLimit: 5,
+          autoSkip:true
         },
         border: {
           display: true,

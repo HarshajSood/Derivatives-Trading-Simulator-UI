@@ -62,13 +62,24 @@ rate-dashboard {
         z-index:1;
       }
       .mat-mdc-tab-body-wrapper{
-        max-height: 500px;
+        margin-bottom: 10px;
       }
     }
     instrument-chart {
       width: calc(100% - max(30%, 280px) - 60px);
       min-width: 400px;
+      .instrument-details{
+        max-height: 10vh;
+      }
+      .canvas-wrapper{
+        max-height: 50vh;
+        display: flex;
+        place-content: center;
+      }
     }
+  }
+  .top-row{
+    max-height: 70vh;
   }
 }
 
